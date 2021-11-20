@@ -6,9 +6,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-// "X34 Landspeeder" (https://skfb.ly/6VzsA) by perceval-66
-// is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
-
 public class Player : MonoBehaviour {
     // Update is called once per frame
     
@@ -31,27 +28,10 @@ public class Player : MonoBehaviour {
         FindObjectOfType<AudioManager>().Play("beem");
         myAudioManager = FindObjectOfType<AudioManager>();
         myAudioManager.Play("landspeeder");
- 
         myAudioManager.PitchMod("landspeeder", minPitch);
         
         myTimer = GameObject.Find("TimeKeeper");
         this.startPosition = this.transform.position;
-        
-        for (int i = 0; i < 100; ++i) {
-            var position = Random.insideUnitCircle * 200.0f;
-            Instantiate( // add collectables
-                this.powerUpPrefab,
-                new Vector3(Mathf.Floor(position.x/1.0f), 0.782f, Mathf.Floor(position.y/1.0f)),
-                Quaternion.identity);
-        }
-        
-        for (int i = 0; i < 10; ++i) {
-            var position = Random.insideUnitCircle * 200.0f;
-            Instantiate( // add time powerups
-                this.powerUpTimePrefab,
-                new Vector3(Mathf.Floor(position.x/1.0f), 0.782f, Mathf.Floor(position.y/1.0f)),
-                Quaternion.identity);
-        }
     }
 
     void FixedUpdate()
