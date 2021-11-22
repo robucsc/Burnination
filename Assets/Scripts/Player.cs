@@ -44,12 +44,22 @@ public class Player : MonoBehaviour {
             {
                 rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.Impulse);
             }
+            else
+            {
+                rb.velocity = new Vector3(maxSpeed, 0, 0);
+            }
+            
+            
         }
         
         if (Input.GetKey("left")) {
             if (sidewaysForce * Time.deltaTime < maxSpeed)
             {
                 rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.Impulse);
+            }
+            else
+            {
+                rb.velocity = new Vector3(-maxSpeed, 0, 0);
             }
         }
     }
