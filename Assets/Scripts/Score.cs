@@ -29,16 +29,16 @@ public class Score : MonoBehaviour {
     }
     
     void OnTriggerEnter(Collider collider) {   
-        Debug.Log("on the trigger");
-        if (collider.gameObject.CompareTag("Player") && !pickedUp) {
-            pickedUp = true;
-            myPlayer.GetComponent<Player>().ScoreCount += 500;
-            myScore.GetComponent<UnityEngine.UI.Text>().text = "Score: " + myPlayer.GetComponent<Player>().ScoreCount;
-            // Debug.Log("something collided with us");
-            FindObjectOfType<AudioManager>().Play("beem");
-            // Debug.Log("Did it play?");
-            Destroy(gameObject, 1.5f);
-            wasPickedUp = true;
+        // Debug.Log("on the trigger");
+        // if (collider.gameObject.CompareTag("Player") && !pickedUp) {
+        //     pickedUp = true;
+        //     myPlayer.GetComponent<Player>().ScoreCount += 500;
+        //     myScore.GetComponent<UnityEngine.UI.Text>().text = "Score: " + myPlayer.GetComponent<Player>().ScoreCount;
+        //     // Debug.Log("something collided with us");
+        //     FindObjectOfType<AudioManager>().Play("beem");
+        //     // Debug.Log("Did it play?");
+        //     Destroy(gameObject, 1.5f);
+        //     wasPickedUp = true;
         }
     }
-}
+// }

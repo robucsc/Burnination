@@ -7,79 +7,117 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour {
-    // Update is called once per frame
-    
-    public float speed = 5000.0f;
-    public float turnSpeed = 5.0f;
-    private Vector3 startPosition;
-    public int ScoreCount = 0;
-    public Text text;
-    public GameObject myTimer;
-    public AudioManager myAudioManager;
-    [SerializeField] private GameObject powerUpPrefab;
-    [SerializeField] private GameObject powerUpTimePrefab;
     
     // AudioSource audioSource;
-    public float minPitch = 1.0f;
-    private float pitchFromCar;
+    
+    public float maxSpeed = 10;
+    public Rigidbody rb;
+    private Collision coll;
+    public LayerMask groundLayer;
+    private AnimationScript anim;
+    Rigidbody PlayerRb;
+    BoxCollider boxCollider;
+    
+    public float upwardForce = 25;
+    public float sidewaysForce = 20f;
+    public bool onGround;
+    public bool isFalling;
+    public bool isFlying;
+    public bool isDirection;
+    public float terminalVelocity = -12;
+    public float fastFallTV = -24;
+    public bool canMove;
 
     void Start()
     {
-        FindObjectOfType<AudioManager>().Play("beem");
-        myAudioManager = FindObjectOfType<AudioManager>();
-        myAudioManager.Play("landspeeder");
-        myAudioManager.PitchMod("landspeeder", minPitch);
+        coll = GetComponent<Collision>();
+        rb = GetComponent<Rigidbody>();
+        PlayerRb = GetComponent<Rigidbody>();
+        boxCollider = GetComponent<BoxCollider>();
         
-        myTimer = GameObject.Find("TimeKeeper");
-        this.startPosition = this.transform.position;
     }
 
     void FixedUpdate()
     {
-        var rigidbody = this.GetComponent<Rigidbody>();
-        var transform = this.GetComponent<Transform>();
-        bool running = true;
-        // Gas pedal and brakes
-        var force = this.speed * Input.GetAxis("Vertical") * Time.deltaTime;
-        running = myTimer.GetComponent<Timer>().timerIsRunning;
-
-        if (running)
-        {
-            Vector3 direction = transform.forward;
-            rigidbody.AddForce(force * direction);
+        if (Input.GetKey("right")) {
+            if (sidewaysForce * Time.deltaTime < maxSpeed)
+            {
+                rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.Impulse);
+            }
         }
-
-        // Turning
-        var turnDirection = 1.0f;
-        if (Vector3.Dot(transform.forward, rigidbody.velocity) < 0.0f)
-        {
-            turnDirection = -1.0f;
-        }
-
-        rigidbody.MoveRotation(transform.localRotation * Quaternion.Euler(
-            0.0f,
-            turnDirection *
-            rigidbody.velocity.magnitude *
-            this.turnSpeed * Input.GetAxis("Horizontal") *
-            Time.deltaTime,
-            0.0f));
-
-        pitchFromCar = force * 0.015f;
-        if (pitchFromCar < minPitch) {
-            myAudioManager.PitchMod("landspeeder", minPitch);
-        } else  {
-            myAudioManager.PitchMod("landspeeder", pitchFromCar);
-        }
-   
-    }
-
-    public void ResetPosition() {
-        this.transform.position = this.startPosition;
         
+        if (Input.GetKey("left")) {
+            if (sidewaysForce * Time.deltaTime < maxSpeed)
+            {
+                rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.Impulse);
+            }
+        }
     }
 
-    public void SetMasterVolume(float value) {
-        this.speed = 6000.0f * value;
-        // this.text.text = "Speed: " + (int)(value * 100.0) + "%";
+    void Update()
+    {
+        // float x = Input.GetAxis("Horizontal");
+        // float y = Input.GetAxis("Vertical");
+        // float xRaw = Input.GetAxisRaw("Horizontal");
+        // float yRaw = Input.GetAxisRaw("Vertical");
+        // Vector2 dir = new Vector2(x, y);
+        //
+        // if (xRaw < 0 || xRaw > 0)
+        //     isDirection = true;
+        // else
+        //     isDirection = false;
+        //
+        // Walk(dir);
+        // anim.SetHorizontalMovement(x, y, rb.velocity.y);
+        // onGround = groundCheck();
+        //
+        // if (rb.velocity.y < 0)
+        // {
+        //     isFlying = false;
+        //     isFalling = true;
+        // }
+        // else
+        // {
+        //     isFalling = false;
+        // }
+        //
+        //
+        // if (isFalling)
+        // {
+        //     if (rb.velocity.y < terminalVelocity)
+        //     {
+        //         if (Input.GetAxis("Vertical") < 0)
+        //         {
+        //             if (rb.velocity.y < fastFallTV)
+        //             {
+        //                 rb.velocity = new Vector2(rb.velocity.x, fastFallTV);
+        //             }
+        //         }
+        //         else
+        //         {
+        //             rb.velocity = new Vector2(rb.velocity.x, terminalVelocity);
+        //         }
+        //     }
+        // }
     }
+
+    // private bool groundCheck(){
+    //     Quaternion myQuat = 0, 0, 0, 0;
+    //     RaycastHit hit = Physics.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size,  Vector3.down, myQuat, 1.0f,   groundLayer);
+    //     return hit.collider != null;
+    // }
+    //
+    // private void Walk(Vector2 dir)
+    // {
+    //     if (!canMove)
+    //     {
+    //         return;
+    //     }
+    // }
+    //
+    // void RigidbodyDrag(float x)
+    // {
+    //     rb.drag = x;
+    // }    
+            
 }
