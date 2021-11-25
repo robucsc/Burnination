@@ -23,8 +23,8 @@ public class CameraManager : MonoBehaviour
 
         //current_camera_position 
         var current_camera_position = camera_transform.position;
-        if(player_pos.x >= current_camera_position.x + this.player_camera_offset){
+        //if(player_pos.x >= current_camera_position.x + this.player_camera_offset){
             camera_transform.position = Vector3.Lerp(current_camera_position, target_camera_pos, 0.02f);
-        }
+        //}
     }
 }
