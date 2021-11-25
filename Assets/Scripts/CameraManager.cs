@@ -7,7 +7,6 @@ public class CameraManager : MonoBehaviour
     public GameObject player;
     public float distance;
     public float height;
-    public float player_camera_offset;
 
     // Update is called once per frame
     void Update()
@@ -23,8 +22,6 @@ public class CameraManager : MonoBehaviour
 
         //current_camera_position 
         var current_camera_position = camera_transform.position;
-        //if(player_pos.x >= current_camera_position.x + this.player_camera_offset){
-            camera_transform.position = Vector3.Lerp(current_camera_position, target_camera_pos, 0.02f);
-        //}
+        camera_transform.position = Vector3.Lerp(current_camera_position, target_camera_pos, 0.02f);
     }
 }
