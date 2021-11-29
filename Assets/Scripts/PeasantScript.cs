@@ -51,7 +51,7 @@ public class PeasantScript : MonoBehaviour
                 }
             }
 
-            if (moveTime <= 0.0)
+            if (moveTime <= 0.0 || (moveSpeed < 0.3f && moveSpeed > -0.3f))
             {
                 moveSpeed = -moveSpeed;
                 idleTime = Random.Range(3.0f, 5.0f);

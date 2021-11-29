@@ -51,7 +51,7 @@ public class KnightScript : MonoBehaviour
                 }
             }
 
-            if (moveTime <= 0.0)
+            if (moveTime <= 0.0 || (moveSpeed < 0.3f && moveSpeed > -0.3f))
             {
                 moveSpeed = -moveSpeed;
                 idleTime = Random.Range(5.0f, 7.0f);
