@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PeasantScript : MonoBehaviour
 {
+    SpriteRenderer m_SpriteRenderer;
+    Animator m_Animator;
     public string state = "idle";
     private float moveSpeed = 0.0f;
     private float moveTime = 2.0f;
@@ -13,7 +15,10 @@ public class PeasantScript : MonoBehaviour
     void Awake()
     {
         //Get the Animator attached to the GameObject you are intending to animate.
-        // m_Animator = gameObject.GetComponent<Animator>();
+        m_Animator = gameObject.GetComponent<Animator>();
+
+        // Get the SpriteRenderer attatched to the GameObject you are intending to uhhhh render???
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,6 +41,14 @@ public class PeasantScript : MonoBehaviour
             if (moveSpeed == 0.0f)
             {
                 moveSpeed = Random.Range(-1.0f, 1.0f);
+                if (moveSpeed >= 0.0f)
+                {
+                    m_SpriteRenderer.flipX = true;
+                }
+                else
+                {
+                    m_SpriteRenderer.flipX = false; 
+                }
             }
 
             if (moveTime <= 0.0)
