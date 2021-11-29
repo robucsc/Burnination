@@ -4,10 +4,12 @@ public class CharacterMove : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _jumpSpeed = 0.5f;
-    [SerializeField] private float _gravity = 2f;
+    [SerializeField] private float _gravity = 0.4f;
     
     CharacterController _characterController;
     private Vector3 _moveDirection;
+
+    public Burninate burninate;
 
     void Awake() => _characterController = GetComponent<CharacterController>();
     void FixedUpdate()
@@ -32,5 +34,5 @@ public class CharacterMove : MonoBehaviour
         _characterController.Move(_moveDirection);
     }
 
-    private bool PlayerJumped => _characterController.isGrounded && Input.GetKey(KeyCode.Space);
+    private bool PlayerJumped => _characterController.isGrounded && burninate.FloatingActive;
 }

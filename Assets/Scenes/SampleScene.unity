@@ -8466,6 +8466,7 @@ MonoBehaviour:
   _moveSpeed: 10
   _jumpSpeed: 0.5
   _gravity: 2
+  burninate: {fileID: 1324705784}
 --- !u!114 &1324705784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8480,8 +8481,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   burninate_effect: {fileID: 1421270864}
   burninate_hitbox: {fileID: 2072263067}
+  characterMove: {fileID: 1324705783}
   burninate_duration: 3
   burninateActive: 0
+  FloatingActive: 0
 --- !u!1001 &1330690737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18736,6 +18739,10 @@ PrefabInstance:
       propertyPath: burninationCheck
       value: 
       objectReference: {fileID: 2072263073}
+    - target: {fileID: 146605136823252736, guid: 7c642cce016f77c49baee8bb90b2694e, type: 3}
+      propertyPath: burning_duration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5253256286485409419, guid: 7c642cce016f77c49baee8bb90b2694e, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -18779,6 +18786,10 @@ PrefabInstance:
     - target: {fileID: 5253256286485409419, guid: 7c642cce016f77c49baee8bb90b2694e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315044620724890531, guid: 7c642cce016f77c49baee8bb90b2694e, type: 3}
+      propertyPath: m_Name
+      value: Updraft
       objectReference: {fileID: 0}
     - target: {fileID: 8638209932359034388, guid: 7c642cce016f77c49baee8bb90b2694e, type: 3}
       propertyPath: m_Name

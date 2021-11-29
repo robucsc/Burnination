@@ -6,9 +6,17 @@ public class Burninate : MonoBehaviour
 {
     public ParticleSystem burninate_effect;
     public GameObject burninate_hitbox;
+    public CharacterMove characterMove;
     public float burninate_duration;
-    public bool burninateActive = false;
+    private float saved_burninate_duration;
+    public bool burninateActive;
+    public bool FloatingActive;
+    private bool swapFloat;
 
+    void Start()
+    {
+        saved_burninate_duration = burninate_duration;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -28,11 +36,30 @@ public class Burninate : MonoBehaviour
             burninate_hitbox.SetActive(false);
             //Debug.Log("burninate stop");
         }
+        
     }
 
     IEnumerator ExampleCoroutine(){
-        burninateActive = true;
+        if(!burninateActive && !swapFloat){
+            burninateActive = true;
+            burninate_duration = saved_burninate_duration;
+        }
+        if(!FloatingActive && swapFloat){
+            FloatingActive = true;
+            burninate_duration = 0.1f;
+        }
         yield return new WaitForSeconds(burninate_duration);
         burninateActive = false;
+        FloatingActive = false;
+        swapFloat = false;
+    }
+
+    void OnTriggerEnter(Collider col){
+        if(col.gameObject.GetComponent<FenceBurnination>().burning){
+            Debug.Log("player hit burnt fence");
+            swapFloat = true;
+            StartCoroutine(ExampleCoroutine());
+
+        }
     }
 }
