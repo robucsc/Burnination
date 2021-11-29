@@ -58,8 +58,7 @@ public class PeasantScript : MonoBehaviour
                 state = "idle";
             }
             // play walking animation
-            // m_Animator.ResetTrigger("idle");
-            // m_Animator.SetTrigger("walking");
+            m_Animator.SetTrigger("walking");
         }
         else
         {
@@ -73,8 +72,7 @@ public class PeasantScript : MonoBehaviour
             }
             
             // play idle animation
-            // m_Animator.ResetTrigger("walking");
-            // m_Animator.SetTrigger("idle");
+            m_Animator.ResetTrigger("walking");
         }
     }
 }
