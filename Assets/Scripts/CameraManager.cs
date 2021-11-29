@@ -22,6 +22,6 @@ public class CameraManager : MonoBehaviour
 
         //current_camera_position 
         var current_camera_position = camera_transform.position;
-        camera_transform.position = Vector3.Lerp(current_camera_position, target_camera_pos, 0.02f);
+        camera_transform.position = Vector3.Lerp(current_camera_position, target_camera_pos, 0.01f);
     }
 }
