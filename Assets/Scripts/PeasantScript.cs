@@ -54,7 +54,7 @@ public class PeasantScript : MonoBehaviour
             if (moveTime <= 0.0)
             {
                 moveSpeed = -moveSpeed;
-                idleTime = 5.0f;
+                idleTime = Random.Range(3.0f, 5.0f);
                 state = "idle";
             }
             // play walking animation

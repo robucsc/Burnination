@@ -54,7 +54,7 @@ public class KnightScript : MonoBehaviour
             if (moveTime <= 0.0)
             {
                 moveSpeed = -moveSpeed;
-                idleTime = 5.0f;
+                idleTime = Random.Range(5.0f, 7.0f);
                 state = "idle";
             }
             // play walking animation
