@@ -36,7 +36,6 @@ public class Burninate : MonoBehaviour
             burninate_hitbox.SetActive(false);
             //Debug.Log("burninate stop");
         }
-        
     }
 
     IEnumerator ExampleCoroutine(){
@@ -56,7 +55,7 @@ public class Burninate : MonoBehaviour
 
     void OnTriggerEnter(Collider col){
         if(col.gameObject.GetComponent<FenceBurnination>().burning){
-            Debug.Log("player hit burnt fence");
+            //Debug.Log("player hit burnt fence");
             swapFloat = true;
             StartCoroutine(ExampleCoroutine());
 

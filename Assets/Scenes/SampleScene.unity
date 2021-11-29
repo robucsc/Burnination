@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8412,7 +8412,7 @@ BoxCollider:
   m_GameObject: {fileID: 1324705778}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.7551062, y: 5.011145, z: 6.896428}
   m_Center: {x: 0, y: 1.1224985, z: -0.14805329}
@@ -8424,7 +8424,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324705778}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -5.9952345, y: 0.99831223, z: -4.9955487}
+  m_LocalPosition: {x: -5.9952345, y: 1.37, z: -4.9955487}
   m_LocalScale: {x: 0.25994, y: 0.25994, z: 0.25994}
   m_Children:
   - {fileID: 1112827706}
@@ -8464,9 +8464,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 10
-  _jumpSpeed: 0.5
-  _gravity: 2
-  burninate: {fileID: 0}
+  _jumpSpeed: 0.3
+  _gravity: 0.2
+  _burninatePushSpeed: 2
+  burninate: {fileID: 1324705784}
 --- !u!114 &1324705784
 MonoBehaviour:
   m_ObjectHideFlags: 0
