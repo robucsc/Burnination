@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1775987241832183618}
   - component: {fileID: -8623417692250100900}
   - component: {fileID: -4898115422589147174}
-  - component: {fileID: -5088787485581110982}
+  - component: {fileID: -410025675000884553}
   m_Layer: 0
   m_Name: Peasant
   m_TagString: Untagged
@@ -125,7 +125,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-5088787485581110982
+--- !u!114 &-410025675000884553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
