@@ -11,11 +11,12 @@ public class CharacterMove : MonoBehaviour
     public CharacterController _characterController;
     private Vector3 _moveDirection;
     private Vector3 transformDirection;
+    private bool right;
 
     public Burninate burninate;
 
     void Awake() => _characterController = GetComponent<CharacterController>();
-    void FixedUpdate()
+    void Update()
     {
         
         float horizontal = Input.GetAxis("Horizontal");
@@ -40,23 +41,29 @@ public class CharacterMove : MonoBehaviour
             //Debug.Log("player not grounded");
             _moveDirection.y -= _gravity * Time.deltaTime;
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
-            
         }
-        
-    }
-    
-    void Update(){
+        if(Input.GetAxis("Horizontal") >= 0){
+            right = true;
+        } else {
+            right = false;
+        }
+
         if(midairJump && Input.GetKeyDown("space")){
             Debug.Log("Jumped!");
-            _moveDirection = _burninatePushSpeed * transformDirection;
+            if(right){
+                _moveDirection.x += _burninatePushSpeed;
+            } else {
+                _moveDirection.x -= _burninatePushSpeed;
+            }
+            
             midairJump = false;
         }
 
-        if(midairJump){
+        /*if(midairJump){
             Debug.Log("can midair jump");
         } else {
             Debug.Log("can't midair jump");
-        }
+        }*/
 
         _characterController.Move(_moveDirection);
     }

@@ -29,8 +29,6 @@ public class FenceBurnination : MonoBehaviour
             flame.Play();
             this.GetComponent<Collider>().isTrigger = true;
         } else {
-            smoke.Clear();
-            smoke.Pause();
             flame.Clear();
             flame.Pause();
             //this.GetComponent<Collider>().isTrigger = false;
@@ -38,11 +36,12 @@ public class FenceBurnination : MonoBehaviour
     }
 
     IEnumerator BurnCoroutine(){
-        FindObjectOfType<AudioManager>().Play("fire_crackle");
-        Debug.Log("audio playing");
         burning = true;
+        FindObjectOfType<AudioManager>().Play("fire_crackle");
         yield return new WaitForSeconds(burning_duration);
         burning = false;
+        this.GetComponent<MeshRenderer>().enabled = false;
+        this.GetComponent<Collider>().enabled = false;
     }
 
 }
