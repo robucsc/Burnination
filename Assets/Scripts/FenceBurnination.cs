@@ -35,7 +35,7 @@ public class FenceBurnination : MonoBehaviour
         }
 
         if(burning){
-            Debug.Log("fence hit");
+            //Debug.Log("fence hit");
             smoke.Play();
             flame.Play();
             this.GetComponent<Collider>().isTrigger = true;
