@@ -10,28 +10,17 @@ public class FenceBurnination : MonoBehaviour
     public BurninationCheck burninationCheck;
     public float burning_duration = 5;
     public bool burning;
-    public AudioClip crackle;
-    public AudioManager myAudioManager;
-    public bool SoundOn;
-    public float crackle_duration = 5;
-
-
-
 
     void Start()
     {
         smoke.Pause();
         flame.Pause();
         burning = false;
-        SoundOn = false;
-        myAudioManager = FindObjectOfType<AudioManager>();
-
     }
 
     void Update(){
         if(burninationCheck.BurninateFence){
-           StartCoroutine(ExampleCoroutine());
-           StartCoroutine(SoundCoroutine());
+           StartCoroutine(BurnCoroutine());
         }
 
         if(burning){
@@ -46,25 +35,14 @@ public class FenceBurnination : MonoBehaviour
             flame.Pause();
             this.GetComponent<Collider>().isTrigger = false;
         }
-        if (SoundOn)
-        {
-            FindObjectOfType<AudioManager>().Play("fire_crackle");
-            Debug.Log("audio playing");
-        }
     }
 
-    IEnumerator ExampleCoroutine(){
+    IEnumerator BurnCoroutine(){
+        FindObjectOfType<AudioManager>().Play("fire_crackle");
+        Debug.Log("audio playing");
         burning = true;
         yield return new WaitForSeconds(burning_duration);
         burning = false;
     }
-
-    IEnumerator SoundCoroutine()
-    {
-        SoundOn = true;
-        yield return new WaitForSeconds(crackle_duration);
-        SoundOn = false;
-    }
-
 
 }

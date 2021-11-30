@@ -22,7 +22,7 @@ public class Burninate : MonoBehaviour
     {
         if(!burninateActive){
             if(Input.GetKeyDown("space")){
-                StartCoroutine(ExampleCoroutine());
+                StartCoroutine(BurninateCoroutine());
             }
         }
 
@@ -30,6 +30,7 @@ public class Burninate : MonoBehaviour
             //Debug.Log("burninate start");
             burninate_effect.Play();
             burninate_hitbox.SetActive(true);
+            
         } else {
             burninate_effect.Clear();
             burninate_effect.Pause();
@@ -38,10 +39,11 @@ public class Burninate : MonoBehaviour
         }
     }
 
-    IEnumerator ExampleCoroutine(){
+    IEnumerator BurninateCoroutine(){
         if(!burninateActive && !swapFloat){
             burninateActive = true;
             burninate_duration = saved_burninate_duration;
+            FindObjectOfType<AudioManager>().Play("fire_breath");
         }
         if(!FloatingActive && swapFloat){
             FloatingActive = true;
@@ -57,8 +59,7 @@ public class Burninate : MonoBehaviour
         if(col.gameObject.GetComponent<FenceBurnination>().burning){
             //Debug.Log("player hit burnt fence");
             swapFloat = true;
-            StartCoroutine(ExampleCoroutine());
-
+            StartCoroutine(BurninateCoroutine());
         }
     }
 }
