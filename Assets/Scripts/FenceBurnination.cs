@@ -33,7 +33,7 @@ public class FenceBurnination : MonoBehaviour
             smoke.Pause();
             flame.Clear();
             flame.Pause();
-            this.GetComponent<Collider>().isTrigger = false;
+            //this.GetComponent<Collider>().isTrigger = false;
         }
     }
 

@@ -37,6 +37,7 @@ public class Burninate : MonoBehaviour
             burninate_hitbox.SetActive(false);
             //Debug.Log("burninate stop");
         }
+
     }
 
     IEnumerator BurninateCoroutine(){
@@ -47,12 +48,11 @@ public class Burninate : MonoBehaviour
         }
         if(!FloatingActive && swapFloat){
             FloatingActive = true;
-            burninate_duration = 0.1f;
         }
         yield return new WaitForSeconds(burninate_duration);
         burninateActive = false;
-        FloatingActive = false;
         swapFloat = false;
+        FloatingActive = false;
     }
 
     void OnTriggerEnter(Collider col){

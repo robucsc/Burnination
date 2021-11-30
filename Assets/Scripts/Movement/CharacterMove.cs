@@ -8,7 +8,7 @@ public class CharacterMove : MonoBehaviour
     [SerializeField] private float _burninatePushSpeed = 0.0f;
     private bool midairJump;
     
-    CharacterController _characterController;
+    public CharacterController _characterController;
     private Vector3 _moveDirection;
 
     public Burninate burninate;
@@ -39,16 +39,19 @@ public class CharacterMove : MonoBehaviour
             //Debug.Log("player not grounded");
             _moveDirection.y -= _gravity * Time.deltaTime;
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
-            if(midairJump && Input.GetKeyDown("space")){
-                _moveDirection.x = -_burninatePushSpeed;
-                midairJump = false;
-            }
+            
         }
-        /*if(midairJump){
+        if(midairJump && Input.GetKeyDown("space")){
+            Debug.Log("Jumped!");
+            _moveDirection = _burninatePushSpeed * transformDirection;
+            midairJump = false;
+        }
+
+        if(midairJump){
             Debug.Log("can midair jump");
         } else {
             Debug.Log("can't midair jump");
-        }*/
+        }
 
         _characterController.Move(_moveDirection);
     }
