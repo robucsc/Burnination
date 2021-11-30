@@ -21,15 +21,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Fire
-  m_Shader: {fileID: -6465566751694194690, guid: c3a61f64d7d331841869d2f76d090226, type: 3}
-  m_ShaderKeywords: _ENABLE_FOG_ON_TRANSPARENT _SURFACE_TYPE_TRANSPARENT
+  m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _ALPHATEST_ON _ENABLE_FOG_ON_TRANSPARENT _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2450
   stringTagMap:
     MotionVector: User
-    RenderType: Transparent
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - ALWAYS
   - MOTIONVECTORS
@@ -128,7 +128,7 @@ Material:
     - _DistortionStrengthScaled: 0
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 2
-    - _DstBlend: 1
+    - _DstBlend: 0
     - _EmissionEnabled: 0
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
@@ -177,7 +177,7 @@ Material:
     - _ZTestDepthEqualForOpaque: 0
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 0
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
     - Vector2_4F8D01F9: {r: 0, g: 1, b: 0, a: 0}
     - Vector2_68AEF8B5: {r: 1, g: 2, b: 0, a: 0}
