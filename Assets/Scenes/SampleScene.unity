@@ -8525,9 +8525,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9655ba5373da844fab5b3f71877e1bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 10
+  _moveSpeed: 5
   _jumpSpeed: 0.3
-  _gravity: 0.2
+  _gravity: 0.1
   _burninatePushSpeed: 2
   _characterController: {fileID: 0}
   burninate: {fileID: 1324705784}
