@@ -13,7 +13,7 @@ public class BurninationCheck : MonoBehaviour
 
     void OnTriggerEnter(Collider col){
         if(col.gameObject.name == "Fence"){
-            Debug.Log("fence collided");
+            //Debug.Log("fence collided");
             BurninateFence = true;
         }
     }

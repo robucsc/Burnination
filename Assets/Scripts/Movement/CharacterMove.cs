@@ -6,7 +6,6 @@ public class CharacterMove : MonoBehaviour
     [SerializeField] private float _jumpSpeed = 0.5f;
     [SerializeField] private float _gravity = 0.4f;
     [SerializeField] private float _burninatePushSpeed = 0.0f;
-    
     private bool midairJump;
     
     CharacterController _characterController;
@@ -17,6 +16,7 @@ public class CharacterMove : MonoBehaviour
     void Awake() => _characterController = GetComponent<CharacterController>();
     void FixedUpdate()
     {
+        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -28,21 +28,27 @@ public class CharacterMove : MonoBehaviour
         
         if (PlayerJumped){
             _moveDirection.y = _jumpSpeed;
-            midairJump = false;
+            midairJump = true;
+            //Debug.Log("player jumped");
         }
         else if (_characterController.isGrounded){
-            _moveDirection.y = 0f;
+            //Debug.Log("player grounded");
+            _moveDirection.y -= _gravity;
+            midairJump = false;
         } else if (!_characterController.isGrounded){
+            //Debug.Log("player not grounded");
             _moveDirection.y -= _gravity * Time.deltaTime;
-        }
-        if(!_characterController.isGrounded){
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
-            if(Input.GetKeyDown("space") && !midairJump){
-                Debug.Log("push!");
-                _moveDirection = _burninatePushSpeed * transformDirection;
-                midairJump = true;
+            if(midairJump && Input.GetKeyDown("space")){
+                _moveDirection.x = -_burninatePushSpeed;
+                midairJump = false;
             }
         }
+        /*if(midairJump){
+            Debug.Log("can midair jump");
+        } else {
+            Debug.Log("can't midair jump");
+        }*/
 
         _characterController.Move(_moveDirection);
     }
