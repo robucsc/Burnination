@@ -8525,11 +8525,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9655ba5373da844fab5b3f71877e1bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _jumpSpeed: 0.3
-  _gravity: 0.1
-  _burninatePushSpeed: 2
-  _characterController: {fileID: 0}
+  _moveSpeed: 0.8
+  _jumpSpeed: 0.15
+  _gravity: 0.25
+  _burninatePushSpeed: 0.5
+  _characterController: {fileID: 1324705782}
   burninate: {fileID: 1324705784}
 --- !u!114 &1324705784
 MonoBehaviour:

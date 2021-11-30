@@ -10,6 +10,7 @@ public class CharacterMove : MonoBehaviour
     
     public CharacterController _characterController;
     private Vector3 _moveDirection;
+    private Vector3 transformDirection;
 
     public Burninate burninate;
 
@@ -21,7 +22,7 @@ public class CharacterMove : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 inputDirection = new Vector3(0, horizontal, vertical);
-        Vector3 transformDirection = transform.TransformDirection(-inputDirection);
+        transformDirection = transform.TransformDirection(-inputDirection);
         
         Vector3 flatMovement = _moveSpeed * Time.deltaTime * transformDirection;
         _moveDirection = new Vector3(flatMovement.x, _moveDirection.y , flatMovement.z);
@@ -41,6 +42,10 @@ public class CharacterMove : MonoBehaviour
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
             
         }
+        
+    }
+    
+    void Update(){
         if(midairJump && Input.GetKeyDown("space")){
             Debug.Log("Jumped!");
             _moveDirection = _burninatePushSpeed * transformDirection;
