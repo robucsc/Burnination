@@ -23,8 +23,8 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	private void Start() {
-		//Play("bgm");
-		//PitchMod("engine", 1.0f);
+		Play("bgm");
+		PitchMod("engine", 1.0f);
 	}
 
 	public void Play(string sound) {
