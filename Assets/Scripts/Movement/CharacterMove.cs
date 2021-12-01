@@ -68,12 +68,10 @@ public class CharacterMove : MonoBehaviour
             
             if(!goingDown){
                 Debug.Log("floating up");
-                // _moveDirection.y -= _gravity * Time.deltaTime;
-                _moveDirection.y -= _gravity;
+                _moveDirection.y -= _gravity * Time.deltaTime;
             } else {
                 Debug.Log("floating down");
-                // _moveDirection.y -= _fallingGravity * Time.deltaTime;
-                _moveDirection.y -= _fallingGravity;
+                _moveDirection.y -= _fallingGravity * Time.deltaTime;
             }
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
             //Vector3 final_rotation;
