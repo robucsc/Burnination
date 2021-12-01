@@ -37,10 +37,24 @@ public class CharacterMove : MonoBehaviour
             //Debug.Log("player grounded");
             _moveDirection.y -= _gravity;
             midairJump = false;
+            this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0);
         } else if (!_characterController.isGrounded){
             //Debug.Log("player not grounded");
             _moveDirection.y -= _gravity * Time.deltaTime;
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
+            Vector3 final_rotation;
+            Vector3 current_rotation = this.GetComponent<Transform>().eulerAngles;
+            if(!right){
+                Debug.Log("facing right");
+                /*final_rotation = new Vector3 (0f, 0f, -180f);
+                Vector3 euler_rotation = Vector3.Lerp(current_rotation, final_rotation, 0.01f);
+                this.GetComponent<Transform>().eulerAngles = euler_rotation;*/
+                this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, -180f);
+
+            } else {
+                Debug.Log("facing left");
+                this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0);
+            }
         }
         if(Input.GetAxis("Horizontal") >= 0){
             right = true;
@@ -50,7 +64,7 @@ public class CharacterMove : MonoBehaviour
 
         if(midairJump && Input.GetKeyDown("space")){
             Debug.Log("Jumped!");
-            if(right){
+            if(!right){
                 _moveDirection.x += _burninatePushSpeed;
             } else {
                 _moveDirection.x -= _burninatePushSpeed;
