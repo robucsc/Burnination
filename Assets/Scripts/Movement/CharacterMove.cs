@@ -20,12 +20,12 @@ public class CharacterMove : MonoBehaviour
     {
         
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        //float vertical = Input.GetAxis("Vertical");
 
-        Vector3 inputDirection = new Vector3(0, horizontal, vertical);
-        transformDirection = transform.TransformDirection(-inputDirection);
+        Vector3 inputDirection = new Vector3(horizontal, 0, 0);
+        //transformDirection = transform.TransformDirection(-inputDirection);
         
-        Vector3 flatMovement = _moveSpeed * Time.deltaTime * transformDirection;
+        Vector3 flatMovement = _moveSpeed * Time.deltaTime * inputDirection;
         _moveDirection = new Vector3(flatMovement.x, _moveDirection.y , flatMovement.z);
         
         if (PlayerJumped){
@@ -44,18 +44,20 @@ public class CharacterMove : MonoBehaviour
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
             Vector3 final_rotation;
             Vector3 current_rotation = this.GetComponent<Transform>().eulerAngles;
-            if(!right){
-                Debug.Log("facing right");
-                /*final_rotation = new Vector3 (0f, 0f, -180f);
-                Vector3 euler_rotation = Vector3.Lerp(current_rotation, final_rotation, 0.01f);
-                this.GetComponent<Transform>().eulerAngles = euler_rotation;*/
-                this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, -180f);
-
-            } else {
-                Debug.Log("facing left");
-                this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0);
-            }
+            
         }
+
+        if(!right){
+            Debug.Log("facing right");
+            /*final_rotation = new Vector3 (0f, 0f, -180f);
+            Vector3 euler_rotation = Vector3.Lerp(current_rotation, final_rotation, 0.01f);
+            this.GetComponent<Transform>().eulerAngles = euler_rotation;*/
+            this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, -180f);
+        } else {
+            Debug.Log("facing left");
+            this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0f);
+        }
+
         if(Input.GetAxis("Horizontal") >= 0){
             right = true;
         } else {
