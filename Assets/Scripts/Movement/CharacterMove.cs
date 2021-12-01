@@ -5,6 +5,7 @@ public class CharacterMove : MonoBehaviour
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _jumpSpeed = 0.5f;
     [SerializeField] private float _gravity = 0.4f;
+    [SerializeField] private float _fallingGravity = 0.4f;
     [SerializeField] private float _burninatePushSpeed = 0.0f;
     private bool midairJump;
     
@@ -12,7 +13,7 @@ public class CharacterMove : MonoBehaviour
     private Vector3 _moveDirection;
     private Vector3 transformDirection;
     private bool right;
-    private bool midair;
+    private bool goingDown;
     private float previous_position_y = 0f;
 
     public Burninate burninate;
@@ -38,27 +39,27 @@ public class CharacterMove : MonoBehaviour
         if (PlayerJumped){  
             _moveDirection.y = _jumpSpeed;
             midairJump = true;
-            midair = false;
+            goingDown = false;
             //Debug.Log("player jumped");
         }
         else if (_characterController.isGrounded){
             //Debug.Log("player grounded");
             _moveDirection.y -= _gravity;
             midairJump = false;
-            midair = false;
+            goingDown = false;
             this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0);
         } else if (!_characterController.isGrounded){
             //Debug.Log("player not grounded");
             if(this.GetComponent<Transform>().position.y < previous_position_y){
-                midair = true;
+                goingDown = true;
             }
             
-            if(!midair){
+            if(!goingDown){
                 Debug.Log("floating up");
                 _moveDirection.y -= _gravity * Time.deltaTime;
             } else {
                 Debug.Log("floating down");
-                _moveDirection.y -= (_gravity * Time.deltaTime) / 5;
+                _moveDirection.y -= _fallingGravity * Time.deltaTime;
             }
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
             //Vector3 final_rotation;
