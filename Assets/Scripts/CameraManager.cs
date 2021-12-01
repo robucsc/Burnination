@@ -19,6 +19,7 @@ public class CameraManager : MonoBehaviour
         
         //target_camera_pos refers to where the camera should be in relation to player_pos
         var target_camera_pos = player_pos;
+        
         if(characterMove._characterController.isGrounded){
             target_camera_pos += new Vector3(this.distance, this.height, -5);
         } else {
