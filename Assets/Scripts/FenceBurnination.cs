@@ -19,10 +19,6 @@ public class FenceBurnination : MonoBehaviour
     }
 
     void Update(){
-        if(burninationCheck.BurninateFence){
-           StartCoroutine(BurnCoroutine());
-        }
-
         if(burning){
             //Debug.Log("fence hit");
             smoke.Play();

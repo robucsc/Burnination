@@ -12,9 +12,10 @@ public class BurninationCheck : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider col){
-        if(col.gameObject.tag == "Fence"){
+        if(col.gameObject.tag == "Fence" && !col.gameObject.GetComponent<FenceBurnination>().burning){
             //Debug.Log("fence collided");
             BurninateFence = true;
+            col.gameObject.GetComponent<FenceBurnination>().burning = true;
         }
     }
 }

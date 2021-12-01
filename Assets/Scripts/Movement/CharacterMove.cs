@@ -53,10 +53,10 @@ public class CharacterMove : MonoBehaviour
             }
             
             if(!midair){
-                Debug.Log("floating up");
+                //Debug.Log("floating up");
                 _moveDirection.y -= _gravity * Time.deltaTime;
             } else {
-                Debug.Log("floating down");
+                //Debug.Log("floating down");
                 _moveDirection.y -= (_gravity / 3) * Time.deltaTime;
             }
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
@@ -66,13 +66,13 @@ public class CharacterMove : MonoBehaviour
         }
 
         if(!right){
-            Debug.Log("facing right");
+            //Debug.Log("facing right");
             /*final_rotation = new Vector3 (0f, 0f, -180f);
             Vector3 euler_rotation = Vector3.Lerp(current_rotation, final_rotation, 0.01f);
             this.GetComponent<Transform>().eulerAngles = euler_rotation;*/
             this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, -180f);
         } else {
-            Debug.Log("facing left");
+            //Debug.Log("facing left");
             this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0f);
         }
 
