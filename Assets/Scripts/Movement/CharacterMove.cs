@@ -13,6 +13,7 @@ public class CharacterMove : MonoBehaviour
     private Vector3 transformDirection;
     private bool right;
     private bool midair;
+    private float previous_position_y = 0f;
 
     public Burninate burninate;
 
@@ -34,7 +35,7 @@ public class CharacterMove : MonoBehaviour
         Vector3 flatMovement = _moveSpeed * Time.deltaTime * inputDirection;
         _moveDirection = new Vector3(flatMovement.x, _moveDirection.y , flatMovement.z);
         
-        if (PlayerJumped){
+        if (PlayerJumped){  
             _moveDirection.y = _jumpSpeed;
             midairJump = true;
             midair = false;
@@ -48,7 +49,7 @@ public class CharacterMove : MonoBehaviour
             this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0);
         } else if (!_characterController.isGrounded){
             //Debug.Log("player not grounded");
-            if(this.GetComponent<Transform>().position.y >= 9.5f){
+            if(this.GetComponent<Transform>().position.y < previous_position_y){
                 midair = true;
             }
             
@@ -57,11 +58,13 @@ public class CharacterMove : MonoBehaviour
                 _moveDirection.y -= _gravity * Time.deltaTime;
             } else {
                 Debug.Log("floating down");
-                _moveDirection.y -= (_gravity * Time.deltaTime) / 2;
+                _moveDirection.y -= (_gravity * Time.deltaTime) / 5;
             }
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
             //Vector3 final_rotation;
             Vector3 current_rotation = this.GetComponent<Transform>().eulerAngles;
+
+            previous_position_y = this.GetComponent<Transform>().position.y;
             
         }
 
