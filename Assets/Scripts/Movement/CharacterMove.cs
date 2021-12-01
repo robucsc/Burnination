@@ -113,10 +113,10 @@ public class CharacterMove : MonoBehaviour
     {
         if(!goingDown){
             Debug.Log("floating up");
-            _moveDirection.y -= _gravity * Time.deltaTime;
+            _moveDirection.y -= _gravity * Time.fixedDeltaTime;
         } else {
             Debug.Log("floating down");
-            _moveDirection.y -= _fallingGravity * Time.deltaTime;
+            _moveDirection.y -= _fallingGravity * Time.fixedDeltaTime;
         }
     }
 
