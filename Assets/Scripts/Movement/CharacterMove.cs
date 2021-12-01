@@ -12,6 +12,7 @@ public class CharacterMove : MonoBehaviour
     private Vector3 _moveDirection;
     private Vector3 transformDirection;
     private bool right;
+    private bool midair;
 
     public Burninate burninate;
 
@@ -31,18 +32,30 @@ public class CharacterMove : MonoBehaviour
         if (PlayerJumped){
             _moveDirection.y = _jumpSpeed;
             midairJump = true;
+            midair = false;
             //Debug.Log("player jumped");
         }
         else if (_characterController.isGrounded){
             //Debug.Log("player grounded");
             _moveDirection.y -= _gravity;
             midairJump = false;
+            midair = false;
             this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0);
         } else if (!_characterController.isGrounded){
             //Debug.Log("player not grounded");
-            _moveDirection.y -= _gravity * Time.deltaTime;
+            if(this.GetComponent<Transform>().position.y >= 10.5f){
+                midair = true;
+            }
+            
+            if(!midair){
+                Debug.Log("floating up");
+                _moveDirection.y -= _gravity * Time.deltaTime;
+            } else {
+                Debug.Log("floating down");
+                _moveDirection.y -= (_gravity / 3) * Time.deltaTime;
+            }
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
-            Vector3 final_rotation;
+            //Vector3 final_rotation;
             Vector3 current_rotation = this.GetComponent<Transform>().eulerAngles;
             
         }
@@ -58,9 +71,9 @@ public class CharacterMove : MonoBehaviour
             this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0f);
         }
 
-        if(Input.GetAxis("Horizontal") >= 0){
+        if(Input.GetAxis("Horizontal") > 0){
             right = true;
-        } else {
+        } else if(Input.GetAxis("Horizontal") < 0){
             right = false;
         }
 
@@ -71,7 +84,6 @@ public class CharacterMove : MonoBehaviour
             } else {
                 _moveDirection.x -= _burninatePushSpeed;
             }
-            
             midairJump = false;
         }
 
