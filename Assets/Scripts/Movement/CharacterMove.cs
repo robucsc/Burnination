@@ -36,9 +36,9 @@ public class CharacterMove : MonoBehaviour
     {
         right = true;
     }
+    
     void Update()
     {
-        
         float horizontal = Input.GetAxis("Horizontal");
         //float vertical = Input.GetAxis("Vertical");
 
@@ -78,7 +78,6 @@ public class CharacterMove : MonoBehaviour
             Vector3 current_rotation = this.GetComponent<Transform>().eulerAngles;
 
             previous_position_y = this.GetComponent<Transform>().position.y;
-            
         }
 
         if(!right){

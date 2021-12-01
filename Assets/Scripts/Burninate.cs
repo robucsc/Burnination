@@ -17,7 +17,7 @@ public class Burninate : MonoBehaviour
     {
         saved_burninate_duration = burninate_duration;
     }
-    // Update is called once per frame
+    
     void Update()
     {
         if(!burninateActive){
@@ -37,7 +37,6 @@ public class Burninate : MonoBehaviour
             burninate_hitbox.SetActive(false);
             //Debug.Log("burninate stop");
         }
-
     }
 
     IEnumerator BurninateCoroutine(){
