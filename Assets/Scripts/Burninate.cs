@@ -48,7 +48,7 @@ public class Burninate : MonoBehaviour
         }
         if(!FloatingActive && swapFloat){
             FloatingActive = true;
-            burninate_duration= 0.1f;
+            //burninate_duration= 0.1f;
         }
         yield return new WaitForSeconds(burninate_duration);
         burninateActive = false;
