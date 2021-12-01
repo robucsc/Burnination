@@ -1,0 +1,33 @@
+{
+    "name": "Player Controls",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "eee00022-45c5-4c99-bc90-f2a087a8570a",
+            "actions": [
+                {
+                    "name": "Burninate",
+                    "type": "Button",
+                    "id": "02be7531-8059-431d-b4bc-e9c3f88840bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "699ed3a4-43fe-45a4-89d8-b5e3c381e1f3",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Burninate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterMove : MonoBehaviour
 {
+    private PlayerControls controls;
+    
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _jumpSpeed = 0.5f;
     [SerializeField] private float _gravity = 0.4f;
@@ -18,7 +22,15 @@ public class CharacterMove : MonoBehaviour
 
     public Burninate burninate;
 
-    void Awake() => _characterController = GetComponent<CharacterController>();
+    // void Awake() => _characterController = GetComponent<CharacterController>();
+    
+    void Awake() {
+        _characterController = GetComponent<CharacterController>();
+        
+        //gamepad code
+        controls = new PlayerControls();
+        controls.Gameplay.Burninate.performed += ctx => burn();
+    }
 
     void Start()
     {
@@ -106,4 +118,20 @@ public class CharacterMove : MonoBehaviour
     }
 
     private bool PlayerJumped => _characterController.isGrounded && burninate.FloatingActive;
+
+    void burn()
+    {
+        // press the space bar
+        Debug.Log("Burninate!");
+    }
+
+    // gamepad code
+    private void OnEnable()
+    {
+        controls.Gameplay.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Gameplay.Disable();
+    }
 }
