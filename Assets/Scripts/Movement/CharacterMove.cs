@@ -48,16 +48,16 @@ public class CharacterMove : MonoBehaviour
             this.GetComponent<Transform>().eulerAngles = new Vector3(-90, 90, 0);
         } else if (!_characterController.isGrounded){
             //Debug.Log("player not grounded");
-            if(this.GetComponent<Transform>().position.y >= 10.5f){
+            if(this.GetComponent<Transform>().position.y >= 9.5f){
                 midair = true;
             }
             
             if(!midair){
-                //Debug.Log("floating up");
+                Debug.Log("floating up");
                 _moveDirection.y -= _gravity * Time.deltaTime;
             } else {
-                //Debug.Log("floating down");
-                _moveDirection.y -= (_gravity / 3) * Time.deltaTime;
+                Debug.Log("floating down");
+                _moveDirection.y -= (_gravity * Time.deltaTime) / 2;
             }
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
             //Vector3 final_rotation;
