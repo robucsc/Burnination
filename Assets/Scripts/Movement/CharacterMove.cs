@@ -101,11 +101,10 @@ public class CharacterMove : MonoBehaviour
         if(midairJump && Input.GetKeyDown("space")){
             Debug.Log("Jumped!");
             if(!right){
-                _moveDirection.x += _burninatePushSpeed;
+                _moveDirection.x += _burninatePushSpeed * flatMovement.x;
             } else {
-                _moveDirection.x -= _burninatePushSpeed;
+                _moveDirection.x -= _burninatePushSpeed * flatMovement.x;
             }
-            midairJump = false;
         }
 
         /*if(midairJump){
