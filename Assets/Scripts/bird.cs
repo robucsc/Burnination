@@ -9,6 +9,6 @@ public class bird : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(speed,GetComponent<Rigidbody>().velocity.y, GetComponent<Rigidbody>().velocity.z);
+        this.GetComponent<Transform>().position += new Vector3(speed * Time.deltaTime, 0, 0);
     }
 }

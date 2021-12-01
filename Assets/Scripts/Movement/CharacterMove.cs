@@ -17,6 +17,11 @@ public class CharacterMove : MonoBehaviour
     public Burninate burninate;
 
     void Awake() => _characterController = GetComponent<CharacterController>();
+
+    void Start()
+    {
+        right = true;
+    }
     void Update()
     {
         
