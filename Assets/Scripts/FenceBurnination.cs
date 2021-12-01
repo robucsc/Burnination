@@ -32,7 +32,6 @@ public class FenceBurnination : MonoBehaviour
                 StartCoroutine(BurnCoroutine());
                 StartCoroutine(SmokeCoroutine());
                 startCor = false;
-
             }
         } else {
             flame.Clear();
@@ -44,7 +43,7 @@ public class FenceBurnination : MonoBehaviour
     IEnumerator BurnCoroutine(){
         this.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(burning_duration);
-        burning = false;
+        
         if(meshRenderer){
             meshRenderer.enabled = false;
         } else {
@@ -54,6 +53,7 @@ public class FenceBurnination : MonoBehaviour
 
     IEnumerator SmokeCoroutine(){
         yield return new WaitForSeconds(burning_duration * 2);
+        burning = false;
         this.GetComponent<AudioSource>().Stop();
         smoke.Clear();
         smoke.Pause();
