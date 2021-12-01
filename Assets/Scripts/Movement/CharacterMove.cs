@@ -15,7 +15,7 @@ public class CharacterMove : MonoBehaviour
     
     public CharacterController _characterController;
     private Vector3 _moveDirection;
-    private Vector3 transformDirection;
+    //private Vector3 transformDirection;
     private bool right;
     private bool goingDown;
     private float previous_position_y = 0f;
@@ -66,13 +66,7 @@ public class CharacterMove : MonoBehaviour
                 goingDown = true;
             }
             
-            if(!goingDown){
-                Debug.Log("floating up");
-                _moveDirection.y -= _gravity * Time.deltaTime;
-            } else {
-                Debug.Log("floating down");
-                _moveDirection.y -= _fallingGravity * Time.deltaTime;
-            }
+            
             _moveDirection = new Vector3(0f, _moveDirection.y, 0f);
             //Vector3 final_rotation;
             Vector3 current_rotation = this.GetComponent<Transform>().eulerAngles;
@@ -100,9 +94,9 @@ public class CharacterMove : MonoBehaviour
         if(midairJump && Input.GetKeyDown("space")){
             Debug.Log("Jumped!");
             if(!right){
-                _moveDirection.x += _burninatePushSpeed * flatMovement.x;
+                _moveDirection.x += _burninatePushSpeed;
             } else {
-                _moveDirection.x -= _burninatePushSpeed * flatMovement.x;
+                _moveDirection.x -= _burninatePushSpeed;
             }
         }
 
@@ -113,6 +107,17 @@ public class CharacterMove : MonoBehaviour
         }*/
 
         _characterController.Move(_moveDirection);
+    }
+
+    void FixedUpdate()
+    {
+        if(!goingDown){
+            Debug.Log("floating up");
+            _moveDirection.y -= _gravity * Time.deltaTime;
+        } else {
+            Debug.Log("floating down");
+            _moveDirection.y -= _fallingGravity * Time.deltaTime;
+        }
     }
 
     private bool PlayerJumped => _characterController.isGrounded && burninate.FloatingActive;
