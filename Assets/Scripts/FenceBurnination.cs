@@ -30,7 +30,9 @@ public class FenceBurnination : MonoBehaviour
             this.GetComponent<Collider>().isTrigger = true;
             if(startCor){
                 StartCoroutine(BurnCoroutine());
+                StartCoroutine(SmokeCoroutine());
                 startCor = false;
+
             }
         } else {
             flame.Clear();
@@ -40,7 +42,7 @@ public class FenceBurnination : MonoBehaviour
     }
 
     IEnumerator BurnCoroutine(){
-        FindObjectOfType<AudioManager>().Play("fire_crackle");
+        this.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(burning_duration);
         burning = false;
         if(meshRenderer){
@@ -48,7 +50,13 @@ public class FenceBurnination : MonoBehaviour
         } else {
             skinnedMeshRenderer.enabled = false;
         }
-        
+    }
+
+    IEnumerator SmokeCoroutine(){
+        yield return new WaitForSeconds(burning_duration * 2);
+        this.GetComponent<AudioSource>().Stop();
+        smoke.Clear();
+        smoke.Pause();
         this.GetComponent<Collider>().enabled = false;
     }
 
