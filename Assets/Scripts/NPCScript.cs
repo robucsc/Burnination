@@ -104,10 +104,11 @@ public class NPCScript : MonoBehaviour
             {
                 moveSpeed = -moveSpeed;
                 idleTime = Random.Range(3.0f, 5.0f);
+                // start idle animation
+                if (isAnimated) m_Animator.SetBool("walking", false);
                 state = "idle";
             }
-            // play walking animation
-            if (isAnimated) m_Animator.SetTrigger("walking");
+            
         }
         else if (state == "playerDetected")
         {
@@ -135,11 +136,12 @@ public class NPCScript : MonoBehaviour
             if (idleTime <= 0.0)
             {
                 moveTime = 1.0f;
+                // start walking animation
+                if (isAnimated) m_Animator.SetBool("walking", true);
                 state = "walking";
             }
             
-            // play idle animation
-            if (isAnimated) m_Animator.ResetTrigger("walking");
+            
         }
     }
 }
