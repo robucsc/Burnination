@@ -18,7 +18,8 @@ public class CharacterMove : MonoBehaviour
     //private Vector3 transformDirection;
     private bool right;
     private bool goingDown;
-    private float previous_position_y = 0f;
+    private float previous_position_y;
+
 
     public Burninate burninate;
 
@@ -35,8 +36,9 @@ public class CharacterMove : MonoBehaviour
     void Start()
     {
         right = true;
+        previous_position_y = 0f;
     }
-    
+
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -52,10 +54,10 @@ public class CharacterMove : MonoBehaviour
             _moveDirection.y = _jumpSpeed;
             midairJump = true;
             goingDown = false;
-            //Debug.Log("player jumped");
+            Debug.Log("player jumped");
         }
         else if (_characterController.isGrounded){
-            //Debug.Log("player grounded");
+            Debug.Log("player grounded");
             _moveDirection.y -= _gravity;
             midairJump = false;
             goingDown = false;
@@ -112,11 +114,13 @@ public class CharacterMove : MonoBehaviour
     void FixedUpdate()
     {
         if(!goingDown){
-            Debug.Log("floating up");
-            _moveDirection.y -= _gravity * Time.fixedDeltaTime;
+            //Debug.Log("floating up");
+            _moveDirection.y -= _gravity * Time.deltaTime;
+            Debug.Log(Time.deltaTime);
         } else {
-            Debug.Log("floating down");
-            _moveDirection.y -= _fallingGravity * Time.fixedDeltaTime;
+            //Debug.Log("floating down");
+            _moveDirection.y -= _fallingGravity * Time.deltaTime;
+            Debug.Log(Time.deltaTime);
         }
     }
 
